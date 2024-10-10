@@ -7,7 +7,7 @@ export class Aluno {
     /* Identificador do Aluno */
     private idAluno: number = 0;
     /* RA do Aluno */
-    
+    private Ra: string;
     /* Nome do Aluno */
     private Nome: string;
     /* Sobrenome do Aluno */
@@ -25,6 +25,7 @@ export class Aluno {
      * Construtor da classe Aluno
      * 
      * @param Nome Nome do Aluno
+     * @param RA RA do Aluno
      * @param Sobrenome Sobrenome do Aluno
      * @param DataNascimento DataNascimento de fabricação do Aluno
      * @param Endereço Endereço do Aluno
@@ -34,6 +35,7 @@ export class Aluno {
 
     constructor(
         Nome: string,
+        RA: string,
         Sobrenome: string,
         DataNascimento: Date,
         Endereço: string,
@@ -41,6 +43,7 @@ export class Aluno {
         Celular: string,
     ) {
         this.Nome = Nome;
+        this.Ra = RA;
         this.Sobrenome = Sobrenome;
         this.DataNascimento = DataNascimento;
         this.Endereço = Endereço;
