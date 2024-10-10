@@ -60,7 +60,6 @@ VALUES
 ('Gabriela', 'Guimarães', '2007-08-19', 'Rua Volei, 2028', 'gaby@volei.com', '16983932215'),
 ('Magic', 'Johnson', '2003-07-08', 'Rua NBA, 1999', 'magic@gmail.com', '16993932020');
 
-
 -- ALUNO -- INSIRA 10 ALUNOS 
 INSERT INTO Aluno (nome, sobrenome, data_nascimento, endereco, email, celular) 
 VALUES 
@@ -74,7 +73,6 @@ VALUES
 ('eder', 'militao', '2009-12-20', 'Rua futebol, 2028', 'edermilitaso@volei.com', '16981971237'),
 ('alex', 'santos', '2001-01-09', 'Rua aleatorio, 2028', 'alexsantos@volei.com', '16983938705'),
 ('kobe', 'bryant', '2005-03-18', 'Rua NBA, 1923', 'jogadorzaso@gmail.com', '16993932140');
-
 
 -- LIVRO
 INSERT INTO Livro (titulo, autor, editora, ano_publicacao, isbn, quant_total, quant_disponivel, valor_aquisicao, status_livro_emprestado) 
@@ -104,7 +102,7 @@ VALUES
 ('Coração das Trevas', 'Joseph Conrad', 'Companhia das Letras', '1899', '978-8535922585', 4, 4, 75.00, 'Disponível'),
 ('A Casa dos Espíritos', 'Isabel Allende', 'Editora Record', '1982', '978-8501077505', 6, 6, 95.00, 'Disponível');
 
--- Inserindo Emprestimos
+-- Inserindo Emprestimo
 INSERT INTO Emprestimo (id_aluno, id_livro, data_emprestimo, data_devolucao, status_emprestimo) 
 VALUES 
 (1, 2, '2024-09-01', '2024-09-15', 'Em andamento'),
@@ -139,8 +137,6 @@ VALUES
 (2, 3, '2024-09-12', '2024-09-26', 'Em andamento'),
 (4, 5, '2024-09-15', '2024-09-29', 'Em andamento'),
 (6, 2, '2024-09-18', '2024-10-02', 'Em andamento');
-
-
 
 SELECT 
     a.ra, 
