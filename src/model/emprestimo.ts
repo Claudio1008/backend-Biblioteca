@@ -13,9 +13,9 @@ export class Emprestimo {
     /* data do Emprestimo */
     private dataEmprestimo: Date;
     /* DataDevolução do Emprestimo */
-    private DataDevolução: Date;
+    private dataDevolução: Date;
     /* Status do Emprestimo */
-    private StatusEmprestimo: string;
+    private statusEmprestimo: string;
     
 
      /**
@@ -34,14 +34,14 @@ export class Emprestimo {
         idAluno: number,
         idLivro: number,
         dataEmprestimo: Date,
-        DataDevolução: Date,
-        StatusEmprestimo:string,
+        dataDevolução: Date,
+        statusEmprestimo:string,
     ) {
         this.idAluno = idAluno;
         this.idLivro = idLivro;
         this.dataEmprestimo = dataEmprestimo;
-        this.DataDevolução = DataDevolução;
-        this.StatusEmprestimo = StatusEmprestimo;
+        this.dataDevolução = dataDevolução;
+        this.statusEmprestimo = statusEmprestimo;
     }
     
         /* Métodos get e set */
@@ -121,7 +121,7 @@ export class Emprestimo {
      * @returns {Date} DataDevolução do Emprestimo.
      */
     public getDataDevolução(): Date {
-        return this.DataDevolução;
+        return this.dataDevolução;
     }
     
     /**
@@ -129,8 +129,8 @@ export class Emprestimo {
      * 
      * @param DataDevolução - DataDevolução do Emprestimo a ser definido.
      */
-    public setDataDevolução(DataDevolução: Date): void {
-        this.DataDevolução = DataDevolução;
+    public setDataDevolução(dataDevolução: Date): void {
+        this.dataDevolução = dataDevolução;
     }
 
     /**
@@ -139,7 +139,7 @@ export class Emprestimo {
      * @returns {string} o Status do Emprestimo 
      */
     public getStatusEmprestimo(): string {
-        return this.StatusEmprestimo;
+        return this.statusEmprestimo;
     }
     
     /**
@@ -147,8 +147,8 @@ export class Emprestimo {
      * 
      * @param StatusEmprestimo - o Status do Emprestimo a ser definido.
      */
-    public setStatusEmprestimo(StatusEmprestimo: string): void {
-        this.StatusEmprestimo = StatusEmprestimo;
+    public setStatusEmprestimo(statusEmprestimo: string): void {
+        this.statusEmprestimo = statusEmprestimo;
     }
 
 }

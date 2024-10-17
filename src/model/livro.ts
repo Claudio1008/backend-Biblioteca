@@ -7,23 +7,23 @@ export class Livro {
     /* Identificador do Livro */
     private idLivro: number = 0;
     /* Autor do Livro */
-    private Autor: string;
+    private autor: string;
     /* Titulo do Livro */
-    private Titulo: string;
+    private titulo: string;
     /* Editora do Livro */
-    private Editora: string;
+    private editora: string;
     /* AnoPublicação do Livro */
-    private AnoPublicação: string;
+    private anoPublicação: string;
     /* Isbn do Livro */
-    private Isbn: string;
+    private isbn: string;
     /* AnoPublicação do Livro */
-    private QuantidadeTotal: number;
+    private quantidadeTotal: number;
     /* Isbn do Livro */
-    private QuantidadeDisponivel: number;
+    private quantidadeDisponivel: number;
     /* AnoPublicação do Livro */
-    private ValorAquisição: number;
+    private valorAquisição: number;
     /* Isbn do Livro */
-    private StatusLivroEmprestado: string;
+    private statusLivroEmprestado: string;
 
 
     /**
@@ -41,25 +41,25 @@ export class Livro {
      */
 
     constructor(
-        Titulo: string,
-        Autor: string,
-        Editora: string,
-        AnoPublicação: string,
-        Isbn: string,
-        QuantidadeTotal: number,
-        QuantidadeDisponivel: number,
-        ValorAquisição: number,
-        StatusLivroEmprestado: string,
+        titulo: string,
+        autor: string,
+        editora: string,
+        anoPublicação: string,
+        isbn: string,
+        quantidadeTotal: number,
+        quantidadeDisponivel: number,
+        valorAquisição: number,
+        statusLivroEmprestado: string,
     ) {
-        this.Titulo = Titulo;
-        this.Autor = Autor;
-        this.Editora = Editora;
-        this.AnoPublicação = AnoPublicação;
-        this.Isbn = Isbn;
-        this.QuantidadeTotal = QuantidadeTotal;
-        this.QuantidadeDisponivel = QuantidadeDisponivel;
-        this.ValorAquisição = ValorAquisição;
-        this.StatusLivroEmprestado = StatusLivroEmprestado;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.editora = editora;
+        this.anoPublicação = anoPublicação;
+        this.isbn = isbn;
+        this.quantidadeTotal = quantidadeTotal;
+        this.quantidadeDisponivel = quantidadeDisponivel;
+        this.valorAquisição = valorAquisição;
+        this.statusLivroEmprestado = statusLivroEmprestado;
     }
 
     /* Métodos get e set */
@@ -85,7 +85,7 @@ export class Livro {
      * @returns {string} A Titulo do Livro.
      */
     public getTitulo(): string {
-        return this.Titulo;
+        return this.titulo;
     }
 
     /**
@@ -93,8 +93,8 @@ export class Livro {
      * 
      * @param Titulo - A Titulo do Livro a ser definida.
      */
-    public setTitulo(Titulo: string): void {
-        this.Titulo = Titulo;
+    public setTitulo(titulo: string): void {
+        this.titulo = titulo;
     }
 
     /**
@@ -103,7 +103,7 @@ export class Livro {
      * @returns {string} o Autor do Livro.
      */
     public getAutor(): string {
-        return this.Autor;
+        return this.autor;
     }
 
     /**
@@ -111,8 +111,8 @@ export class Livro {
      * 
      * @param Autor - o Autor do Livro a ser definida.
      */
-    public setAutor(Autor: string): void {
-        this.Autor = Autor;
+    public setAutor(autor: string): void {
+        this.autor = autor;
     }
 
 
@@ -122,7 +122,7 @@ export class Livro {
      * @returns {string} O Editora do Livro.
      */
     public getEditora(): string {
-        return this.Editora;
+        return this.editora;
     }
 
     /**
@@ -130,8 +130,8 @@ export class Livro {
      *
      * @param Editora - O Titulo do Editora do Livro.
      */
-    public setEditora(Editora: string): void {
-        this.Editora = Editora;
+    public setEditora(editora: string): void {
+        this.editora = editora;
     }
 
     /**
@@ -140,7 +140,7 @@ export class Livro {
      * @returns O AnoPublicação do Livro.
      */
     public getAnoPublicação(): string {
-        return this.AnoPublicação;
+        return this.anoPublicação;
     }
 
     /**
@@ -148,8 +148,8 @@ export class Livro {
      * 
      * @param AnoPublicação - O AnoPublicação a ser definido para o Livro.
      */
-    public setAnoPublicação(AnoPublicação: string): void {
-        this.AnoPublicação = AnoPublicação;
+    public setAnoPublicação(anoPublicação: string): void {
+        this.anoPublicação = anoPublicação;
     }
 
     /**
@@ -158,7 +158,7 @@ export class Livro {
      * @returns {string} A Isbn do Livro.
      */
     public getIsbn(): string {
-        return this.Isbn;
+        return this.isbn;
     }
 
     /**
@@ -166,8 +166,8 @@ export class Livro {
      * 
      * @param Isbn - A nova Isbn do Livro.
      */
-    public setIsbn(Isbn: string): void {
-        this.Isbn = Isbn;
+    public setIsbn(isbn: string): void {
+        this.isbn = isbn;
     }
 
     /**
@@ -176,7 +176,7 @@ export class Livro {
      * @returns {number} o QuantidadeTotal do Livro.
      */
     public getQuantidadeTotal(): number {
-            return this.QuantidadeTotal;
+            return this.quantidadeTotal;
     }
     
     /**
@@ -184,8 +184,8 @@ export class Livro {
      * 
      * @param QuantidadeTotal - o QuantidadeTotal do Livro.
      */
-    public setQuantidadeTotal(QuantidadeTotal: number): void {
-        this.QuantidadeTotal = QuantidadeTotal;
+    public setQuantidadeTotal(quantidadeTotal: number): void {
+        this.quantidadeTotal = quantidadeTotal;
     }
 
     /**
@@ -194,7 +194,7 @@ export class Livro {
      * @returns {number} o QuantidadeDisponivel do Livro.
      */
     public getQuantidadeDisponivel(): number {
-        return this.QuantidadeDisponivel;
+        return this.quantidadeDisponivel;
     }
 
     /**
@@ -202,8 +202,8 @@ export class Livro {
      * 
      * @param QuantidadeDisponivel - o QuantidadeDisponivel do Livro.
      */
-    public setQuantidadeDisponivel(QuantidadeDisponivel: number): void {
-        this.QuantidadeDisponivel = QuantidadeDisponivel;
+    public setQuantidadeDisponivel(quantidadeDisponivel: number): void {
+        this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
     /**
@@ -212,7 +212,7 @@ export class Livro {
      * @returns {string} ValorAquisição do Livro.
      */
     public getValorAquisição(): number {
-        return this.ValorAquisição;
+        return this.valorAquisição;
     }
 
     /**
@@ -220,8 +220,8 @@ export class Livro {
      * 
      * @param ValorAquisição - A ValorAquisição Livro a ser definida.
      */
-    public setValorAquisição(ValorAquisição: number): void {
-        this.ValorAquisição = ValorAquisição;
+    public setValorAquisição(valorAquisição: number): void {
+        this.valorAquisição = valorAquisição;
     }
 
     /**
@@ -230,7 +230,7 @@ export class Livro {
      * @returns {string} StatusLivroEmprestado do Livro.
      */
     public getStatusLivroEmprestado(): string {
-        return this.StatusLivroEmprestado;
+        return this.statusLivroEmprestado;
     }
 
     /**
@@ -238,8 +238,8 @@ export class Livro {
      * 
      * @param Titulo - StatusLivroEmprestado do Livro a ser definida.
      */
-    public setStatusLivroEmprestado(StatusLivroEmprestado: string): void {
-        this.StatusLivroEmprestado = StatusLivroEmprestado;
+    public setStatusLivroEmprestado(statusLivroEmprestado: string): void {
+        this.statusLivroEmprestado = statusLivroEmprestado;
     }
 }
 

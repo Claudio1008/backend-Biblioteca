@@ -7,24 +7,24 @@ export class Aluno {
     /* Identificador do Aluno */
     private idAluno: number = 0;
     /* RA do Aluno */
-    private Ra: string;
+    private ra: string = "";
     /* Nome do Aluno */
-    private Nome: string;
+    private nome: string;
     /* Sobrenome do Aluno */
-    private Sobrenome: string;
+    private sobrenome: string;
     /* DataNascimento do Aluno */
-    private DataNascimento: Date;
+    private dataNascimento: Date;
     /* Endereço do Aluno */
-    private Endereço: string;
+    private endereço: string;
     /* DataNascimento do Aluno */
-    private Email: string;
+    private email: string;
     /* Endereço do Aluno */
-    private Celular: string;
+    private celular: string;
 
     /**
      * Construtor da classe Aluno
      * 
-     * @param Nome Nome do Aluno
+     * @param nome nome do Aluno
      * @param RA RA do Aluno
      * @param Sobrenome Sobrenome do Aluno
      * @param DataNascimento DataNascimento de fabricação do Aluno
@@ -34,21 +34,19 @@ export class Aluno {
      */
 
     constructor(
-        Nome: string,
-        RA: string,
-        Sobrenome: string,
-        DataNascimento: Date,
-        Endereço: string,
-        Email: string,
-        Celular: string,
+        nome: string,
+        sobrenome: string,
+        dataNascimento: Date,
+        endereço: string,
+        email: string,
+        celular: string,
     ) {
-        this.Nome = Nome;
-        this.Ra = RA;
-        this.Sobrenome = Sobrenome;
-        this.DataNascimento = DataNascimento;
-        this.Endereço = Endereço;
-        this.Email = Email;
-        this.Celular = Celular;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.dataNascimento = dataNascimento;
+        this.endereço = endereço;
+        this.email = email;
+        this.celular = celular;
     }
 
     /* Métodos get e set */
@@ -69,21 +67,21 @@ export class Aluno {
     }
 
     /**
-     * Retorna a Nome do Aluno.
+     * Retorna a nome do Aluno.
      *
-     * @returns {string} A Nome do Aluno.
+     * @returns {string} A nome do Aluno.
      */
     public getNome(): string {
-        return this.Nome;
+        return this.nome;
     }
 
     /**
-     * Define a Nome do Aluno.
+     * Define a nome do Aluno.
      * 
-     * @param Nome - A Nome do Aluno a ser definida.
+     * @param nome - A nome do Aluno a ser definida.
      */
-    public setNome(Nome: string): void {
-        this.Nome = Nome;
+    public setNome(nome: string): void {
+        this.nome = nome;
     }
 
     /**
@@ -92,7 +90,7 @@ export class Aluno {
      * @returns {string} O Sobrenome do Aluno.
      */
     public getSobrenome(): string {
-        return this.Sobrenome;
+        return this.sobrenome;
     }
 
     /**
@@ -100,8 +98,8 @@ export class Aluno {
      *
      * @param Sobrenome - O Nome do Sobrenome do Aluno.
      */
-    public setSobrenome(Sobrenome: string): void {
-        this.Sobrenome = Sobrenome;
+    public setSobrenome(sobrenome: string): void {
+        this.sobrenome = sobrenome;
     }
 
     /**
@@ -110,7 +108,7 @@ export class Aluno {
      * @returns O DataNascimento do Aluno.
      */
     public getDataNascimento(): Date {
-        return this.DataNascimento;
+        return this.dataNascimento;
     }
 
     /**
@@ -118,8 +116,8 @@ export class Aluno {
      * 
      * @param DataNascimento - O DataNascimento a ser definido para o Aluno.
      */
-    public setDataNascimento(DataNascimento: Date): void {
-        this.DataNascimento = DataNascimento;
+    public setDataNascimento(dataNascimento: Date): void {
+        this.dataNascimento = dataNascimento;
     }
 
     /**
@@ -128,7 +126,7 @@ export class Aluno {
      * @returns {string} A Endereço do Aluno.
      */
     public getEndereço(): string {
-        return this.Endereço;
+        return this.endereço;
     }
 
     /**
@@ -136,8 +134,8 @@ export class Aluno {
      * 
      * @param Endereço - A nova Endereço do Aluno.
      */
-    public setEndereço(Endereço: string): void {
-        this.Endereço = Endereço;
+    public setEndereço(endereço: string): void {
+        this.endereço = endereço;
     }
 
     /**
@@ -146,7 +144,7 @@ export class Aluno {
      * @returns {string} o Email do Aluno.
      */
     public getEmail(): string {
-            return this.Email;
+            return this.email;
     }
     
     /**
@@ -154,8 +152,8 @@ export class Aluno {
      * 
      * @param Email - o Email do Aluno.
      */
-    public setEmail(Email: string): void {
-        this.Email = Email;
+    public setEmail(email: string): void {
+        this.email = email;
     }
 
     /**
@@ -164,7 +162,7 @@ export class Aluno {
      * @returns {string} o Celular do Aluno.
      */
     public getCelular(): string {
-        return this.Celular;
+        return this.celular;
     }
 
     /**
@@ -172,8 +170,8 @@ export class Aluno {
      * 
      * @param Celular - o Celular do Aluno.
      */
-    public setCelular(Celular: string): void {
-        this.Celular = Celular;
+    public setCelular(celular: string): void {
+        this.celular = celular;
     }
 }
 
