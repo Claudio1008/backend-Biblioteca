@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { Emprestimo } from "../model/Emprestimo";
 
 interface EmprestimoDTO {
-    idEmprestimo: number,
     idAluno: number,
     idLivro: number,
     dataEmprestimo: Date,
@@ -63,7 +62,6 @@ export class EmprestimoController extends Emprestimo {
 
             // instanciando um objeto do tipo Emprestimos com as informações recebidas
             const novoEmprestimo = new Emprestimo(
-                                        EmprestimoRecebido.idEmprestimo,
                                         EmprestimoRecebido.idAluno,
                                         EmprestimoRecebido.idLivro,
                                         EmprestimoRecebido.dataEmprestimo,

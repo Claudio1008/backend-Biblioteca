@@ -28,7 +28,7 @@ router.post("/novo/alunos", AlunoController.novo);
 * ROTAS PARA PEDIDOS
 */ 
 // Rota para listar os pedidos
-router.get("/lista/pedidos", EmprestimoController.todos);
-router.post("/novo/pedidos", EmprestimoController.novo);
+router.get("/lista/emprestimos", EmprestimoController.todos);
+router.post("/novo/emprestimos", EmprestimoController.novo);
 // exportando as rotas
 export { router };

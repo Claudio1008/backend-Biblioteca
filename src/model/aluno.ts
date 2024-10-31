@@ -17,12 +17,12 @@ export class Aluno {
     private nome: string;
     /* sobrenome do aluno */
     private sobrenome: string;
-    /* nascimento do aluno */
-    private nascimento: Date;
+    /* DataNascimento do aluno */
+    private DataNascimento: Date;
     /* endereço do aluno */
     private endereço: string;
     private email: string;
-    private celular: number;
+    private celular: string;
 
 
     /**
@@ -31,7 +31,7 @@ export class Aluno {
      * @param nome nome do aluno
      * @param ra ra do aluno
      * @param sobrenome sobrenome do aluno
-     * @param nascimento Nascimento do aluno
+     * @param DataNascimento DataNascimento do aluno
      * @param endereço endereço do aluno
      * @param email email no aluno
      * @param celular telefone do aluno
@@ -39,14 +39,14 @@ export class Aluno {
     constructor(
         nome: string,
         sobrenome: string,
-        nascimento: Date,
+        DataNascimento: Date,
         endereço: string,
         email: string,
-        celular: number
+        celular: string
     ) {
         this.nome = nome;
         this.sobrenome = sobrenome;
-        this.nascimento = nascimento;
+        this.DataNascimento = DataNascimento;
         this.endereço = endereço;
         this.email = email;
         this.celular = celular;
@@ -123,21 +123,21 @@ export class Aluno {
     }
 
     /**
-     * Retorna o nascimento do aluno.
+     * Retorna o DataNascimento do aluno.
      *
-     * @returns {Date}O nascimento do aluno.
+     * @returns {Date}O DataNascimento do aluno.
      */
-    public getNascimento(): Date {
-        return this.nascimento;
+    public getDataNascimento(): Date {
+        return this.DataNascimento;
     }
 
     /**
-     * Define o nascimento do aluno.
+     * Define o DataNascimento do aluno.
      * 
-     * @param nascimento - O nascimento a ser definido para o aluno.
+     * @param DataNascimento - O DataNascimento a ser definido para o aluno.
      */
-    public setNascimento(nascimento: Date): void {
-        this.nascimento = nascimento;
+    public setDataNascimento(dataNascimento: Date): void {
+        this.DataNascimento = dataNascimento;
     }
 
     /**
@@ -175,14 +175,14 @@ export class Aluno {
      /**
      * @returns {number}
      */
-     public getCelular(celular: number) {
+     public getCelular(celular: string) {
         return this.celular;
     }
 
     /**
      * @param email
      */
-    public setCelular(celular: number): void {
+    public setCelular(celular: string): void {
         this.celular = celular;
     }
 
@@ -214,7 +214,7 @@ export class Aluno {
                 const novoAluno = new Aluno(
                     linha.nome,
                     linha.sobrenome,
-                    linha.nascimento,
+                    linha.DataNascimento,
                     linha.endereço,
                     linha.email,
                     linha.celular
@@ -254,15 +254,15 @@ export class Aluno {
     static async cadastroAluno(aluno: Aluno): Promise<boolean> {
         try {
             // query para fazer insert de um aluno no banco de dados
-            const querySelectAluno = `INSERT INTO aluno (email, modelo, ano, cor)
+            const querySelectAluno = `INSERT INTO aluno (nome, sobrenome, data_nascimento, endereco, email, celular)
                                         VALUES
                                         (
                                         '${aluno.getNome()}', 
                                         '${aluno.getSobrenome()}', 
-                                        ${aluno.getNascimento()}, 
+                                        '${aluno.getDataNascimento()}', 
                                         '${aluno.getEndereço()}',
                                         '${aluno.getEmail()}',
-                                        '${aluno.getCelular}',
+                                        '${aluno.getCelular}')
                                         RETURNING id_aluno;`;
 
             // executa a query no banco e armazena a resposta

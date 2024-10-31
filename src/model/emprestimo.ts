@@ -23,8 +23,6 @@ export class Emprestimo {
 
      /**
      * Construtor da classe Emprestimo
-
-     * @param idEmprestimo id do Emprestimo
      * @param idAluno id do Aluno
      * @param idEmprestimo id do Emprestimo
      * @param dataEmprestimo data do Emprestimo
@@ -34,14 +32,12 @@ export class Emprestimo {
     
     
     constructor(
-        idEmprestimo: number,
         idAluno: number,
         idLivro: number,
         dataEmprestimo: Date,
         dataDevolução: Date,
         statusEmprestimo:string,
     ) {
-        this.idEmprestimo = idEmprestimo;
         this.idAluno = idAluno;
         this.idLivro = idLivro;
         this.dataEmprestimo = dataEmprestimo;
@@ -182,16 +178,15 @@ export class Emprestimo {
             respostaBD.rows.forEach((linha) => {
                 // instancia (cria) objeto Emprestimo
                 const novoEmprestimo = new Emprestimo(
-                    linha.idEmprestimo,
-                    linha.idAluno,
-                    linha.idLivro,
-                    linha.dataEmprestimo,
-                    linha.dataDevolução,
-                    linha.statusEmprestimo
+                    linha.id_aluno,
+                    linha.id_livro,
+                    linha.data_emprestimo,
+                    linha.data_devolucao,
+                    linha.status_emprestimo
                 );
 
                 // atribui o ID objeto
-                novoEmprestimo.setIdEmprestimo(linha.id_Emprestimo);
+                novoEmprestimo.setIdEmprestimo(linha.id_emprestimo);
 
                 // adiciona o objeto na lista
                 listaDeEmprestimo.push(novoEmprestimo);
@@ -233,14 +228,14 @@ export class Emprestimo {
                                         '${Emprestimo.getdataEmprestimo()}, 
                                         '${Emprestimo.getDataDevolução()}',
                                         '${Emprestimo.getStatusEmprestimo}',
-                                        RETURNING id_Emprestimo;`;
+                                        RETURNING id_emprestimo;`;
 
             // executa a query no banco e armazena a resposta
             const respostaBD = await database.query(querySelectEmprestimo);
 
             // verifica se a quantidade de linhas modificadas é diferente de 0
             if (respostaBD.rowCount != 0) {
-                console.log(`Emprestimo cadastrado com sucesso! ID do Emprestimo: ${respostaBD.rows[0].id_Emprestimo}`);
+                console.log(`Emprestimo cadastrado com sucesso! ID do Emprestimo: ${respostaBD.rows[0].id_emprestimo}`);
                 // true significa que o cadastro foi feito
                 return true;
             }
