@@ -1,3 +1,6 @@
+import { DatabaseModel } from "./DatabaseModel";
+
+const database = new DatabaseModel().pool;
 /**
  * classe que representa o Emprestimo
  */
@@ -8,7 +11,7 @@ export class Emprestimo {
     private idEmprestimo: number = 0;
     /* identificador do Aluno */
     private idAluno: number;
-    /* identificador do Livro */
+    /* identificador do Emprestimo */
     private idLivro: number;
     /* data do Emprestimo */
     private dataEmprestimo: Date;
@@ -19,11 +22,11 @@ export class Emprestimo {
     
 
      /**
-     * Construtor da classe Livro
+     * Construtor da classe Emprestimo
 
      * @param idEmprestimo id do Emprestimo
      * @param idAluno id do Aluno
-     * @param idLivro id do Livro
+     * @param idEmprestimo id do Emprestimo
      * @param dataEmprestimo data do Emprestimo
      * @param DataDevolução data de devolução do Emprestimo
      * @param StatusEmprestimo Status do Emprestimo
@@ -31,12 +34,14 @@ export class Emprestimo {
     
     
     constructor(
+        idEmprestimo: number,
         idAluno: number,
         idLivro: number,
         dataEmprestimo: Date,
         dataDevolução: Date,
         statusEmprestimo:string,
     ) {
+        this.idEmprestimo = idEmprestimo;
         this.idAluno = idAluno;
         this.idLivro = idLivro;
         this.dataEmprestimo = dataEmprestimo;
@@ -80,18 +85,18 @@ export class Emprestimo {
     }
 
         /**
-     * Retorna o idLivro do Emprestimo.
+     * Retorna o idEmprestimo do Emprestimo.
      *
-     * @returns {number} o idLivro do Emprestimo.
+     * @returns {number} o idEmprestimo do Emprestimo.
      */
     public getidLivro(): number {
         return this.idLivro;
     }
     
     /**
-     * Define o idLivro do Emprestimo.
+     * Define o idEmprestimo do Emprestimo.
      * 
-     * @param idLivro - o idLivro do Emprestimo a ser definido.
+     * @param idEmprestimo - o idEmprestimo do Emprestimo a ser definido.
      */
     public setidLivro(idLivro: number): void {
         this.idLivro = idLivro;
@@ -151,5 +156,105 @@ export class Emprestimo {
         this.statusEmprestimo = statusEmprestimo;
     }
 
-}
 
+
+    /**
+     * Busca e retorna uma lista de Emprestimo do banco de dados.
+     * @returns Um array de objetos do tipo `Emprestimo` em caso de sucesso ou `null` se ocorrer um erro durante a consulta.
+     * 
+     * - A função realiza uma consulta SQL para obter todas as informações da tabela "Emprestimo".
+     * - Os dados retornados do banco de dados são usados para instanciar objetos da classe `Emprestimo`.
+     * - Cada Emprestimo é adicionado a uma lista que será retornada ao final da execução.
+     * - Se houver falha na consulta ao banco, a função captura o erro, exibe uma mensagem no console e retorna `null`.
+     */
+    static async listagemEmprestimo(): Promise<Array<Emprestimo> | null> {
+        // objeto para armazenar a lista de Emprestimo
+        const listaDeEmprestimo: Array<Emprestimo> = [];
+
+        try {
+            // query de consulta ao banco de dados
+            const querySelectEmprestimo = `SELECT * FROM Emprestimo;`;
+
+            // fazendo a consulta e guardando a resposta
+            const respostaBD = await database.query(querySelectEmprestimo);
+
+            // usando a resposta para instanciar um objeto do tipo Emprestimo
+            respostaBD.rows.forEach((linha) => {
+                // instancia (cria) objeto Emprestimo
+                const novoEmprestimo = new Emprestimo(
+                    linha.idEmprestimo,
+                    linha.idAluno,
+                    linha.idLivro,
+                    linha.dataEmprestimo,
+                    linha.dataDevolução,
+                    linha.statusEmprestimo
+                );
+
+                // atribui o ID objeto
+                novoEmprestimo.setIdEmprestimo(linha.id_Emprestimo);
+
+                // adiciona o objeto na lista
+                listaDeEmprestimo.push(novoEmprestimo);
+            });
+
+            // retorna a lista de Emprestimo
+            return listaDeEmprestimo;
+        } catch (error) {
+            console.log('Erro ao buscar lista de Emprestimo');
+            return null;
+        }
+    }
+
+    /**
+     * Realiza o cadastro de um Emprestimo no banco de dados.
+     * 
+     * Esta função recebe um objeto do tipo `Emprestimo` e insere seus dados (isbn, modelo, ano e cor)
+     * na tabela `Emprestimo` do banco de dados. O método retorna um valor booleano indicando se o cadastro 
+     * foi realizado com sucesso.
+     * 
+     * @param {Emprestimo} Emprestimo - Objeto contendo os dados do Emprestimo que será cadastrado. O objeto `Emprestimo`
+     *                        deve conter os métodos `getTitulo()`, `getAutor()`, `getAnoPublicacao()` e `getIsbn()`
+     *                        que retornam os respectivos valores do Emprestimo.
+     * @returns {Promise<boolean>} - Retorna `true` se o Emprestimo foi cadastrado com sucesso e `false` caso contrário.
+     *                               Em caso de erro durante o processo, a função trata o erro e retorna `false`.
+     * 
+     * @throws {Error} - Se ocorrer algum erro durante a execução do cadastro, uma mensagem de erro é exibida
+     *                   no console junto com os detalhes do erro.
+     */
+    static async cadastroEmprestimo(Emprestimo: Emprestimo): Promise<boolean> {
+        try {
+            // query para fazer insert de um Emprestimo no banco de dados
+            const querySelectEmprestimo = `INSERT INTO Emprestimo (idEmprestimo, idAluno, idLivro ,dataEmprestimo, dataDevolução, statusEmprestimo)
+                                        VALUES
+                                        (
+                                        '${Emprestimo.getIdEmprestimo()}', 
+                                        '${Emprestimo.getidAluno()}',
+                                        '${Emprestimo.getidLivro()}', 
+                                        '${Emprestimo.getdataEmprestimo()}, 
+                                        '${Emprestimo.getDataDevolução()}',
+                                        '${Emprestimo.getStatusEmprestimo}',
+                                        RETURNING id_Emprestimo;`;
+
+            // executa a query no banco e armazena a resposta
+            const respostaBD = await database.query(querySelectEmprestimo);
+
+            // verifica se a quantidade de linhas modificadas é diferente de 0
+            if (respostaBD.rowCount != 0) {
+                console.log(`Emprestimo cadastrado com sucesso! ID do Emprestimo: ${respostaBD.rows[0].id_Emprestimo}`);
+                // true significa que o cadastro foi feito
+                return true;
+            }
+            // false significa que o cadastro NÃO foi feito.
+            return false;
+
+            // tratando o erro
+        } catch (error) {
+            // imprime outra mensagem junto com o erro
+            console.log('Erro ao cadastrar o Emprestimo. Verifique os logs para mais detalhes.');
+            // imprime o erro no console
+            console.log(error);
+            // retorno um valor falso
+            return false;
+        }
+    }
+}
