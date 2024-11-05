@@ -173,11 +173,13 @@ export class Aluno {
     }
 
      /**
-     * @returns {number}
+     * @returns {string}
      */
-     public getCelular(celular: string) {
+     public getCelular(): string {
         return this.celular;
     }
+
+    
 
     /**
      * @param email
@@ -262,7 +264,7 @@ export class Aluno {
                                         '${aluno.getDataNascimento()}', 
                                         '${aluno.getEndereço()}',
                                         '${aluno.getEmail()}',
-                                        '${aluno.getCelular}')
+                                        '${aluno.getCelular()}')
                                         RETURNING id_aluno;`;
 
             // executa a query no banco e armazena a resposta
