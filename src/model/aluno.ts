@@ -179,8 +179,6 @@ export class Aluno {
         return this.celular;
     }
 
-    
-
     /**
      * @param email
      */
