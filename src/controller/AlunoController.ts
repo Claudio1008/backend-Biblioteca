@@ -4,7 +4,7 @@ import { Aluno } from "../model/Aluno";
 interface AlunoDTO {
     nome: string,
     sobrenome: string,
-    dataNascimento: Date,
+    dataNascimento: string,
     endereco: string,
     email: string,
     celular: string
