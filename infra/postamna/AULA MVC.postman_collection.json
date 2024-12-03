@@ -1,0 +1,360 @@
+{
+	"info": {
+		"_postman_id": "ce3f251c-f615-46d6-8714-125fc09f5e5f",
+		"name": "AULA MVC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38148704"
+	},
+	"item": [
+		{
+			"name": "biblioteca",
+			"item": [
+				{
+					"name": "alunos",
+					"item": [
+						{
+							"name": "lista/alunos",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "novo/alunos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Joao\",\r\n    \"sobrenome\": \"Marcos\",\r\n    \"dataNascimento\": \"2000-09-09\",\r\n    \"endereco\": \"Rua do mozovo, 123\",\r\n    \"email\": \"joaomarcos@gmail.com\",\r\n    \"celular\": \"1699456026\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3333/novo/alunos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"novo",
+										"alunos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "remover/alunos",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3333/delete/aluno/40",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"delete",
+										"aluno",
+										"40"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "atualizar/alunos",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Croberto\",\r\n    \"sobrenome\": \"gerald\",\r\n    \"dataNascimento\": \"2005-01-10\",\r\n    \"endereco\": \"Rua UzC, 123\",\r\n    \"email\": \"mcratogor@ufc.com\",\r\n    \"celular\": \"16998229876\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3333/atualizar/aluno/38",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"atualizar",
+										"aluno",
+										"38"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "livros",
+					"item": [
+						{
+							"name": "lista/livros",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "novo/livros",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"titulo\": \"A História Sem Fim\",\r\n    \"autor\": \"Michael Ende\",\r\n    \"anoPublicacao\": \"1979\",\r\n    \"editora\": \"Penguin Random House\",\r\n    \"isbn\": \"978-0140386332\",\r\n    \"quantTotal\": 5,\r\n    \"quantDisponivel\": 3,\r\n    \"valorAquisicao\": \"120.00\",\r\n    \"statusLivroEmprestado\": \"Disponível\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3333/novo/livros",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"novo",
+										"livros"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "remover/livros",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3333/delete/livros/24",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"delete",
+										"livros",
+										"24"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "atualizar/livros",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "emprestimo",
+					"item": [
+						{
+							"name": "lista/emprestimos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3333/lista/emprestimos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"lista",
+										"emprestimos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "atualizar/emprestimo",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idAluno\": 6,\r\n    \"idLivro\": 2,\r\n    \"dataEmprestimo\": \"2024-09-12\",\r\n    \"dataDevolucao\": \"2024-10-02\",\r\n    \"statusEmprestimo\": \"Em andamento\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3333/atualizar/emprestimos/15",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"atualizar",
+										"emprestimos",
+										"15"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "elitecar",
+			"item": [
+				{
+					"name": "deletar carro",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "deletar cliente",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "cadastro cliente",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "deletar pedidoVenda",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/delete/pedido/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"delete",
+								"pedido",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar carro",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"marca\": \"chevrolet\",\r\n    \"modelo\": \"cruze\",\r\n    \"ano\": 2018,\r\n    \"cor\": \"prata\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/atualizar/carro/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"atualizar",
+								"carro",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar pedido",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCarro\": 3,\r\n    \"idCliente\": 4,\r\n    \"dataPedido\": \"2020-08-08\",\r\n    \"valorPedido\": 55000.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/atualizar/pedidos/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"atualizar",
+								"pedidos",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "rota principal",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "pessoa",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
