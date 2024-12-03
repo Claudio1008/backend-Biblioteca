@@ -12,23 +12,29 @@ router.get("/", (req: Request, res: Response) => {
 });
 
 /* 
-* ROTAS PARA CARROS
+* ROTAS PARA livros
 */ 
-// Rota para listar os carros
+// Rota para listar os livros
 router.get("/lista/livros", LivroController.todos);
 router.post("/novo/livros", LivroController.novo);
+router.delete("/delete/livros/:idLivro", LivroController.remover);
+router.put("/atualizar/livros/:idLivro", LivroController.atualizar);
 
 /* 
-* ROTAS PARA CLIENTES
+* ROTAS PARA alunos
 */ 
-// Rota para listar os clientes
-router.get("/lista/alunos", AlunoController.todos);
-router.post("/novo/alunos", AlunoController.novo);
+// Rota para listar os alunos
+router.get("/lista/aluno", AlunoController.todos);
+router.post("/novo/aluno", AlunoController.novo);
+router.delete("/delete/aluno/:idAluno", AlunoController.remover);
+router.put("/atualizar/aluno/:idAluno", AlunoController.atualizar);
 /* 
-* ROTAS PARA PEDIDOS
+* ROTAS PARA emprestimos
 */ 
-// Rota para listar os pedidos
+// Rota para listar os emprestimo
 router.get("/lista/emprestimos", EmprestimoController.todos);
 router.post("/novo/emprestimos", EmprestimoController.novo);
+router.delete("/delete/emprestimos/:idEmprestimo", EmprestimoController.remover);
+router.put("/atualizar/emprestimos/:idEmprestimo", EmprestimoController.atualizar);
 // exportando as rotas
 export { router };

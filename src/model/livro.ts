@@ -287,44 +287,108 @@ export class Livro {
      * @throws {Error} - Se ocorrer algum erro durante a execução do cadastro, uma mensagem de erro é exibida
      *                   no console junto com os detalhes do erro.
      */
-static async cadastroLivro(livro: Livro): Promise<boolean> {
-    try {
-        // query para fazer insert de um livro no banco de dados
-        const queryInsertLivro = `INSERT INTO livro (titulo, autor, editora, ano_publicacao, isbn, quant_total, quant_disponivel, valor_aquisicao, status_livro_emprestado)
-                                    VALUES
-                                    ('${livro.getTitulo()}', 
-                                    '${livro.getAutor()}', 
-                                    '${livro.getEditora()}', 
-                                    '${livro.getAnoPublicacao()}',
-                                    '${livro.getIsbn()}',
-                                     ${livro.getQuantTotal()},
-                                     ${livro.getQuantDisponivel()},
-                                     ${livro.getValorAquisicao()},
-                                    '${livro.getStatusLivroEmprestado()}')
-                                    RETURNING id_livro;`;
-
-                console.log(queryInsertLivro);
-
-        // executa a query no banco e armazena a resposta
-        const respostaBD = await database.query(queryInsertLivro);
-
-        // verifica se a quantidade de linhas modificadas é diferente de 0
-        if (respostaBD.rowCount != 0) {
-            console.log(`Livro cadastrado com sucesso! ID do carro: ${respostaBD.rows[0].id_livro}`);
-            // true significa que o cadastro foi feito
-            return true;
+    static async cadastroLivro(livro: Livro): Promise<boolean> {
+        try {
+            // query para fazer insert de um livro no banco de dados
+            const queryInsertLivro = `INSERT INTO livro (titulo, autor, editora, ano_publicacao, isbn, quant_total, quant_disponivel, valor_aquisicao, status_livro_emprestado)
+                                        VALUES
+                                        ('${livro.getTitulo()}', 
+                                        '${livro.getAutor()}', 
+                                        '${livro.getEditora()}', 
+                                        '${livro.getAnoPublicacao()}',
+                                        '${livro.getIsbn()}',
+                                         ${livro.getQuantTotal()},
+                                         ${livro.getQuantDisponivel()},
+                                         ${livro.getValorAquisicao()},
+                                        '${livro.getStatusLivroEmprestado()}')
+                                        RETURNING id_livro;`;
+    
+                    console.log(queryInsertLivro);
+    
+            // executa a query no banco e armazena a resposta
+            const respostaBD = await database.query(queryInsertLivro);
+    
+            // verifica se a quantidade de linhas modificadas é diferente de 0
+            if (respostaBD.rowCount != 0) {
+                console.log(`Livro cadastrado com sucesso! ID do carro: ${respostaBD.rows[0].id_livro}`);
+                // true significa que o cadastro foi feito
+                return true;
+            }
+            // false significa que o cadastro NÃO foi feito.
+            return false;
+    
+            // tratando o erro
+        } catch (error) {
+            // imprime outra mensagem junto com o erro
+            console.log('Erro ao cadastrar o livro. Verifique os logs para mais detalhes.');
+            // imprime o erro no console
+            console.log(error);
+            // retorno um valor falso
+            return false;
         }
-        // false significa que o cadastro NÃO foi feito.
-        return false;
-
-        // tratando o erro
-    } catch (error) {
-        // imprime outra mensagem junto com o erro
-        console.log('Erro ao cadastrar o livro. Verifique os logs para mais detalhes.');
-        // imprime o erro no console
-        console.log(error);
-        // retorno um valor falso
-        return false;
     }
-}
+
+    static async removerLivro(idLivro: number): Promise<boolean> {
+        try {
+            const queryDeleteLivro = `DELETE FROM Livro WHERE id_livro = ${idLivro}`;
+
+            const respostaBD = await database.query(queryDeleteLivro);
+
+            if(respostaBD.rowCount != 0) {
+                console.log(`Livro removido com sucesso!. ID removido: ${idLivro}`);
+
+                return true;
+            }
+
+            return false;
+
+        } catch (error) {
+
+            console.log(`erro ao remover Livro . verifique os logs para mais detalhes,`);
+
+            console.log(error);
+
+            return false;
+        }
+    }
+    
+    static async atualizarLivro(livro: Livro): Promise<boolean> {
+        try {
+            // query para fazer update de um Livro no banco de dados
+            const queryUpdateLivro = `UPDATE Livro
+                                        SET titulo = '${livro.getTitulo()}',
+                                        autor = '${livro.getAutor()}', 
+                                        editora ='${livro.getEditora()}', 
+                                        ano_publicacao = '${livro.getAnoPublicacao()}',
+                                        isbn = '${livro.getIsbn()}',
+                                        quant_total = ${livro.getQuantTotal()},
+                                        quant_disponivel = ${livro.getQuantDisponivel()},
+                                        valor_aquisicao = ${livro.getValorAquisicao()},
+                                        status_livro_emprestado = '${livro.getStatusLivroEmprestado()}'
+                                        WHERE id_livro = ${livro.getIdLivro()};`;
+
+            // executa a query no banco e armazena a resposta
+            const respostaBD = await database.query(queryUpdateLivro);
+
+            // verifica se a quantidade de linhas modificadas é diferente de 0
+            if (respostaBD.rowCount != 0) {
+                console.log(`Livro atualizado com sucesso! ID do Livro: ${livro.getIdLivro()}`);
+                // true significa que a atualização foi bem sucedida
+                return true;
+            }
+            // false significa que a atualização NÃO foi bem sucedida.
+            return false;
+
+            // tratando o erro
+        } catch (error) {
+            // imprime outra mensagem junto com o erro
+            console.log('Erro ao atualizar o Livro. Verifique os logs para mais detalhes.');
+            // imprime o erro no console
+            console.log(error);
+            // retorno um valor falso
+            return false;
+        }
+    }
+
+    
 }

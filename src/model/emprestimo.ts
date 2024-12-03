@@ -15,8 +15,8 @@ export class Emprestimo {
     private idLivro: number;
     /* data do Emprestimo */
     private dataEmprestimo: Date;
-    /* DataDevolução do Emprestimo */
-    private dataDevolução: Date;
+    /* DataDevolucao do Emprestimo */
+    private dataDevolucao: Date;
     /* Status do Emprestimo */
     private statusEmprestimo: string;
     
@@ -26,7 +26,7 @@ export class Emprestimo {
      * @param idAluno id do Aluno
      * @param idEmprestimo id do Emprestimo
      * @param dataEmprestimo data do Emprestimo
-     * @param DataDevolução data de devolução do Emprestimo
+     * @param DataDevolucao data de devolucao do Emprestimo
      * @param StatusEmprestimo Status do Emprestimo
      */
     
@@ -35,13 +35,13 @@ export class Emprestimo {
         idAluno: number,
         idLivro: number,
         dataEmprestimo: Date,
-        dataDevolução: Date,
+        dataDevolucao: Date,
         statusEmprestimo:string,
     ) {
         this.idAluno = idAluno;
         this.idLivro = idLivro;
         this.dataEmprestimo = dataEmprestimo;
-        this.dataDevolução = dataDevolução;
+        this.dataDevolucao = dataDevolucao;
         this.statusEmprestimo = statusEmprestimo;
     }
     
@@ -117,21 +117,21 @@ export class Emprestimo {
     }
 
     /**
-     * Retorna DataDevolução do Emprestimo.
+     * Retorna DataDevolucao do Emprestimo.
      *
-     * @returns {Date} DataDevolução do Emprestimo.
+     * @returns {Date} DataDevolucao do Emprestimo.
      */
-    public getDataDevolução(): Date {
-        return this.dataDevolução;
+    public getDataDevolucao(): Date {
+        return this.dataDevolucao;
     }
     
     /**
-     * Define DataDevolução do Emprestimo.
+     * Define DataDevolucao do Emprestimo.
      * 
-     * @param DataDevolução - DataDevolução do Emprestimo a ser definido.
+     * @param DataDevolucao - DataDevolucao do Emprestimo a ser definido.
      */
-    public setDataDevolução(dataDevolução: Date): void {
-        this.dataDevolução = dataDevolução;
+    public setDataDevolucao(dataDevolucao: Date): void {
+        this.dataDevolucao = dataDevolucao;
     }
 
     /**
@@ -219,14 +219,14 @@ export class Emprestimo {
     static async cadastroEmprestimo(Emprestimo: Emprestimo): Promise<boolean> {
         try {
             // query para fazer insert de um Emprestimo no banco de dados
-            const querySelectEmprestimo = `INSERT INTO Emprestimo (idEmprestimo, idAluno, idLivro ,dataEmprestimo, dataDevolução, statusEmprestimo)
+            const querySelectEmprestimo = `INSERT INTO Emprestimo (idEmprestimo, idAluno, idLivro ,dataEmprestimo, dataDevolucao, statusEmprestimo)
                                         VALUES
                                         (
                                         '${Emprestimo.getIdEmprestimo()}', 
                                         '${Emprestimo.getidAluno()}',
                                         '${Emprestimo.getidLivro()}', 
                                         '${Emprestimo.getdataEmprestimo()}, 
-                                        '${Emprestimo.getDataDevolução()}',
+                                        '${Emprestimo.getDataDevolucao()}',
                                         '${Emprestimo.getStatusEmprestimo}',
                                         RETURNING id_emprestimo`;
 
@@ -246,6 +246,65 @@ export class Emprestimo {
         } catch (error) {
             // imprime outra mensagem junto com o erro
             console.log('Erro ao cadastrar o Emprestimo. Verifique os logs para mais detalhes.');
+            // imprime o erro no console
+            console.log(error);
+            // retorno um valor falso
+            return false;
+        }
+    }
+
+    static async removerEmprestimo(idEmprestimo: number): Promise<boolean> {
+        try {
+            const queryDeleteEmprestimo = `DELETE FROM Emprestimo_venda WHERE id_Emprestimo = ${idEmprestimo}`;
+
+            const respostaBD = await database.query(queryDeleteEmprestimo);
+
+            if(respostaBD.rowCount != 0) {
+                console.log(`Emprestimo removido com sucesso!. ID removido: ${idEmprestimo}`);
+
+                return true;
+            }
+
+            return false;
+
+        } catch (error) {
+
+            console.log(`erro ao remover EmprestimoVenda . verifique os logs para mais detalhes,`);
+
+            console.log(error);
+
+            return false;
+        }
+    }
+
+    static async atualizarEmprestimo(emprestimo: Emprestimo): Promise<boolean> {
+        try {
+            // query para fazer update de um Emprestimo no banco de dados
+            const queryUpdateEmprestimo = `UPDATE Emprestimo
+                                        SET 
+                                        id_aluno = '${emprestimo.getidAluno()}',
+                                        id_livro = '${emprestimo.getidLivro()}', 
+                                        data_emprestimo = '${emprestimo.getdataEmprestimo()}', 
+                                        data_devolucao = '${emprestimo.getDataDevolucao()}',
+                                        status_emprestimo = '${emprestimo.getStatusEmprestimo()}'
+                                        WHERE id_emprestimo = ${emprestimo.getIdEmprestimo()};`;
+
+            // executa a query no banco e armazena a resposta
+            const respostaBD = await database.query(queryUpdateEmprestimo);
+
+            // verifica se a quantidade de linhas modificadas é diferente de 0
+            if (respostaBD.rowCount != 0) {
+                console.log(`Emprestimo atualizado com sucesso! ID do Emprestimo: ${emprestimo.getIdEmprestimo()}`);
+                // true significa que a atualização foi bem sucedida
+                return true;
+            }
+            // false significa que a atualização NÃO foi bem sucedida.
+            return false;
+
+            // tratando o erro
+        } catch (error) {
+            // imprime outra mensagem junto com o erro
+            console.log('Erro ao atualizar o Emprestimo. Verifique os logs para mais detalhes.');
             // imprime o erro no console
             console.log(error);
             // retorno um valor falso

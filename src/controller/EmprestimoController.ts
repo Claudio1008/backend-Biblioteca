@@ -5,7 +5,7 @@ interface EmprestimoDTO {
     idAluno: number,
     idLivro: number,
     dataEmprestimo: Date,
-    dataDevolução: Date,
+    dataDevolucao: Date,
     statusEmprestimo:string
 }
 
@@ -65,7 +65,7 @@ export class EmprestimoController extends Emprestimo {
                                         EmprestimoRecebido.idAluno,
                                         EmprestimoRecebido.idLivro,
                                         EmprestimoRecebido.dataEmprestimo,
-                                        EmprestimoRecebido.dataDevolução,
+                                        EmprestimoRecebido.dataDevolucao,
                                         EmprestimoRecebido.statusEmprestimo);
 
             // Chama a função de cadastro passando o objeto como parâmetro
@@ -85,6 +85,68 @@ export class EmprestimoController extends Emprestimo {
 
             // retorna uma mensagem de erro há quem chamou a mensagem
             return res.status(400).json({ mensagem: "Não foi possível cadastrar o Emprestimos. Entre em contato com o administrador do sistema." });
+        }
+    }
+
+    static async remover(req: Request, res: Response): Promise<any> {
+        try {
+            // recuperando o id do pedido que será removido
+            const idEmprestimo = parseInt(req.params.idEmprestimo as string);
+
+            // chamando a função de remoção de Emprestimo
+            const respostaModelo = await Emprestimo.removerEmprestimo(idEmprestimo);
+
+            // verificando a resposta da função
+            if (respostaModelo) {
+                // retornar uma mensagem de sucesso
+                return res.status(200).json({ mensagem: "Emprestimo removido com sucesso!" });
+            } else {
+                // retorno uma mensagem de erro
+                return res.status(400).json({ mensagem: "Erro ao remover o Emprestimo. Entre em contato com o administrador do sistema." })
+            }
+        } catch (error) {
+            // lança uma mensagem de erro no console
+            console.log(`Erro ao remover um Emprestimo. ${error}`);
+
+            // retorna uma mensagem de erro há quem chamou a mensagem
+            return res.status(400).json({ mensagem: "Não foi possível remover o Emprestimo. Entre em contato com o administrador do sistema." });
+        }
+    }
+    static async atualizar(req: Request, res: Response): Promise<any> {
+        try {
+            // recuperando o id do Emprestimo que será atualizado
+            const idEmprestimo = parseInt(req.params.idEmprestimo as string);
+
+            // recuperando as informações do Emprestimo que serão atualizadas
+            const emprestimoRecebido: EmprestimoDTO = req.body;
+
+            // instanciando um objeto do tipo Emprestimo com as informações recebidas
+            const emprestimoAtualizado = new Emprestimo(emprestimoRecebido.idAluno,
+                emprestimoRecebido.idLivro,
+                emprestimoRecebido.dataEmprestimo,
+                emprestimoRecebido.dataDevolucao,
+                emprestimoRecebido.statusEmprestimo);
+
+            // setando o id do Emprestimo que será atualizado
+            emprestimoAtualizado.setIdEmprestimo(idEmprestimo);
+
+            // chamando a função de atualização de cliente
+            const resposta = await Emprestimo.atualizarEmprestimo(emprestimoAtualizado);
+
+            // verificando a resposta da função
+            if (resposta) {
+                // retornar uma mensagem de sucesso
+                return res.status(200).json({ mensagem: "Emprestimo atualizado com sucesso!" });
+            } else {
+                // retorno uma mensagem de erro
+                return res.status(400).json({ mensagem: "Erro ao atualizar o Emprestimo. Entre em contato com o administrador do sistema." })
+            }
+        } catch (error) {
+            // lança uma mensagem de erro no console
+            console.log(`Erro ao atualizar um Emprestimo. ${error}`);
+
+            // retorna uma mensagem de erro há quem chamou a mensagem
+            return res.status(400).json({ mensagem: "Não foi possível atualizar o Emprestimo. Entre em contato com o administrador do sistema." });
         }
     }
 }
